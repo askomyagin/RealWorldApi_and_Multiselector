@@ -2,7 +2,21 @@ import { useActions } from '../hooks/useActions';
 import { UserSignIn } from '../service/types/user-types';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import {
+    Container,
+    RegistrationContainer,
+    ButtonContainer,
+    Button,
+    Input,
+    Label,
+    Form,
+    FieldContainer,
+    DescriptionContainer,
+    SignInDescription,
+    Title,
+    SignUpDescription,
+} from './styled/signInUp';
 
 const initialForm: UserSignIn = {
     email: '',
@@ -35,35 +49,85 @@ export const SignIn = () => {
                 const { email, password } = values;
 
                 return (
-                    <form className="form" onSubmit={handleSubmit}>
-                        <p>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type={'text'}
-                                name={'email'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={email}
-                            />
-                        </p>
-                        {touched.email && errors.email && <p className="error">{errors.email}</p>}
-                        <p>
-                            <label htmlFor="password">Пароль</label>
-                            <input
-                                type={'password'}
-                                name={'password'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={password}
-                            />
-                        </p>
-                        {touched.password && errors.password && (
-                            <p className="error">{errors.password}</p>
-                        )}
-                        <button disabled={!isValid && !dirty} type={'submit'}>
-                            Отправить
-                        </button>
-                    </form>
+                    <Container>
+                        <Title>Добро пожаловать в Сборник Статей!</Title>
+                        <DescriptionContainer>
+                            <SignInDescription>Выполните вход</SignInDescription>
+                        </DescriptionContainer>
+
+                        <Form onSubmit={handleSubmit}>
+                            <FieldContainer>
+                                <Label htmlFor="email">Email:</Label>
+                                <Input
+                                    type={'text'}
+                                    name={'email'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={email}
+                                />
+                                {touched.email && errors.email && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.email && !errors.email && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+                            <FieldContainer>
+                                <Label htmlFor="password">Пароль:</Label>
+                                <Input
+                                    type={'password'}
+                                    name={'password'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={password}
+                                />
+                                {touched.password && errors.password && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.password && !errors.password && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+                            <ButtonContainer>
+                                <Button disabled={!isValid && !dirty} type={'submit'}>
+                                    Отправить
+                                </Button>
+                            </ButtonContainer>
+                        </Form>
+                        <DescriptionContainer>
+                            <SignUpDescription>
+                                или
+                                <RegistrationContainer>
+                                    <Link
+                                        to={'/signUp'}
+                                        style={{ textDecoration: 'none', color: 'black' }}
+                                    >
+                                        зарегистрируйтесь
+                                    </Link>
+                                </RegistrationContainer>
+                            </SignUpDescription>
+                        </DescriptionContainer>
+                    </Container>
                 );
             }}
         </Formik>

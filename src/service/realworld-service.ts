@@ -26,10 +26,10 @@ export class RealWorldService {
     headers: Headers;
 
     constructor() {
-        this._apiBase = 'https://conduit.productionready.io/api/';
+        this._apiBase = 'https://api.realworld.io/api';
         this.headers = {
+            accept: 'application/json',
             'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
         };
     }
 

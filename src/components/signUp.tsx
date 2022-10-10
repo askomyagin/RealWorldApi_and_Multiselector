@@ -2,6 +2,17 @@ import { useActions } from '../hooks/useActions';
 import { UserSignUp } from '../service/types/user-types';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import {
+    Container,
+    ButtonContainer,
+    Button,
+    Input,
+    Label,
+    Form,
+    FieldContainer,
+    DescriptionContainer,
+    SignInDescription,
+} from './styled/signInUp';
 
 const initialForm: UserSignUp = {
     email: '',
@@ -42,67 +53,132 @@ export const SignUp = () => {
                 const { email, password, username, passwordСonfirmation } = values;
 
                 return (
-                    <form className="form" onSubmit={handleSubmit}>
-                        <p>
-                            <label htmlFor="username">Имя пользователя</label>
-                            <input
-                                type={'text'}
-                                name={'username'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={username}
-                                id={'username'}
-                            />
-                        </p>
-                        {touched.username && errors.username && (
-                            <p className="error">{errors.username}</p>
-                        )}
-                        <p>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type={'text'}
-                                name={'email'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={email}
-                                id={'email'}
-                            />
-                        </p>
-                        {touched.email && errors.email && <p className="error">{errors.email}</p>}
-                        <p>
-                            <label htmlFor="password">Пароль</label>
-                            <input
-                                type={'password'}
-                                name={'password'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={password}
-                                id={'password'}
-                                autoComplete={'off'}
-                            />
-                        </p>
-                        {touched.password && errors.password && (
-                            <p className="error">{errors.password}</p>
-                        )}
-                        <p>
-                            <label htmlFor="passwordСonfirmation">Подтвердите пароль</label>
-                            <input
-                                type={'password'}
-                                name={'passwordСonfirmation'}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={passwordСonfirmation}
-                                id={'passwordСonfirmation'}
-                                autoComplete={'off'}
-                            />
-                        </p>
-                        {touched.passwordСonfirmation && errors.passwordСonfirmation && (
-                            <p className="error">{errors.passwordСonfirmation}</p>
-                        )}
-                        <button disabled={!isValid && !dirty} type={'submit'}>
-                            Зарегестрироваться
-                        </button>
-                    </form>
+                    <Container>
+                        <DescriptionContainer>
+                            <SignInDescription>Регистрация</SignInDescription>
+                        </DescriptionContainer>
+                        <Form onSubmit={handleSubmit}>
+                            <FieldContainer>
+                                <Label htmlFor="username">Имя пользователя:</Label>
+                                <Input
+                                    type={'text'}
+                                    name={'username'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={username}
+                                    id={'username'}
+                                />
+                                {touched.username && errors.username && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.username && !errors.username && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+
+                            <FieldContainer>
+                                <Label htmlFor="email">Email:</Label>
+                                <Input
+                                    type={'text'}
+                                    name={'email'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={email}
+                                    id={'email'}
+                                />
+                                {touched.email && errors.email && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.email && !errors.email && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+
+                            <FieldContainer>
+                                <Label htmlFor="password">Пароль:</Label>
+                                <Input
+                                    type={'password'}
+                                    name={'password'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={password}
+                                    id={'password'}
+                                    autoComplete={'off'}
+                                />
+                                {touched.password && errors.password && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.password && !errors.password && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+
+                            <FieldContainer>
+                                <Label htmlFor="passwordСonfirmation">Подтвердите пароль:</Label>
+                                <Input
+                                    type={'password'}
+                                    name={'passwordСonfirmation'}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={passwordСonfirmation}
+                                    id={'passwordСonfirmation'}
+                                    autoComplete={'off'}
+                                />
+                                {touched.passwordСonfirmation && errors.passwordСonfirmation && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'red' }}
+                                    >
+                                        priority_high
+                                    </span>
+                                )}
+                                {touched.passwordСonfirmation && !errors.passwordСonfirmation && (
+                                    <span
+                                        className="material-icons-outlined"
+                                        style={{ fontSize: '20px', color: 'green' }}
+                                    >
+                                        done
+                                    </span>
+                                )}
+                            </FieldContainer>
+
+                            <ButtonContainer>
+                                <Button disabled={!isValid && !dirty} type={'submit'}>
+                                    Зарегистрироваться
+                                </Button>
+                            </ButtonContainer>
+                        </Form>
+                    </Container>
                 );
             }}
         </Formik>
