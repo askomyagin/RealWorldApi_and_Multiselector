@@ -1,10 +1,12 @@
 # Collection Of Articles
 
-Используется realWorld api.
+Используется [RealWorld](https://github.com/gothinkster/realworld) api.
 Метод отправки и получения данных - axios.
 Поддержка авторизации.
 
-Библиотека для создания формы - Formik.
-Валидация - yup.
-TypeScript, React, React-Router.
-Styled Components - стилизация.
+-   TypeScript
+-   React
+-   React-Router
+-   стилизация - Styled Components
+-   Библиотека для создания формы - Formik
+-   Валидация - yup
