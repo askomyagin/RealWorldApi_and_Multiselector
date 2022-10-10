@@ -36,9 +36,7 @@ export const Header = () => {
                     </PageContainer>
 
                     <UserContainer>
-                        <Link to="/user" style={{ textDecoration: 'none' }}>
-                            <UserName>{user?.username}</UserName>
-                        </Link>
+                        <UserName>{user?.username}</UserName>
                         <LogOutButton onClick={logOut}>Выйти</LogOutButton>
                     </UserContainer>
                 </>

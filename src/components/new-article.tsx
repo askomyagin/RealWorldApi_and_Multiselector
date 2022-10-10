@@ -16,9 +16,12 @@ const initialForm: CreateArticle = {
 };
 
 const colourOptions = [
-    { value: 'ocean1', label: 'Ocean' },
-    { value: 'blue', label: 'Blue' },
-    { value: 'purple', label: 'Purple' },
+    { value: 'programming', label: 'Programming' },
+    { value: 'math', label: 'Math' },
+    { value: 'science', label: 'Science' },
+    { value: 'react', label: 'React' },
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'c++', label: 'C++' },
 ];
 
 export const NewArticle = () => {
@@ -30,7 +33,6 @@ export const NewArticle = () => {
         title: yup.string().required('Обязательно'),
         description: yup.string().required('Обязательно'),
         body: yup.string().required('Обязательно'),
-        tagList: yup.array().required('Обязательно'),
     });
 
     const handleModalOpen = useCallback((flag: boolean) => {
@@ -49,7 +51,7 @@ export const NewArticle = () => {
 
     const postNewArticle = useCallback(
         (article: CreateArticle) => {
-            article.tagList = selectedItems.map(({ value }) => value);
+            article.tagList = selectedItems.map(({ label }) => label);
             RealWorld.makePostRequest('/articles', { article: { ...article } }, true)
                 .then(() => handleModalOpen(true))
                 .catch(() => handleModalOpen(false));
@@ -170,22 +172,6 @@ export const NewArticle = () => {
                                     selectedItems={selectedItems}
                                     name={'tagList'}
                                 />
-                                {touched.tagList && selectedItems.length === 0 && (
-                                    <span
-                                        className="material-icons-outlined"
-                                        style={{ fontSize: '20px', color: 'red' }}
-                                    >
-                                        priority_high
-                                    </span>
-                                )}
-                                {touched.tagList && selectedItems.length > 0 && (
-                                    <span
-                                        className="material-icons-outlined"
-                                        style={{ fontSize: '20px', color: 'green' }}
-                                    >
-                                        done
-                                    </span>
-                                )}
                             </FormItem>
                             {articlePosted && <Posted>Статья успешно добавлена!</Posted>}
                             {articleErrorPosted && (
@@ -194,6 +180,7 @@ export const NewArticle = () => {
                             <ButtonContainer>
                                 <Button
                                     disabled={!isValid && !dirty}
+                                    type={'button'}
                                     onClick={() => handleSubmit()}
                                 >
                                     Создать

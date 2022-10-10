@@ -29,6 +29,13 @@ export const ArticleItem = ({ article }: Props) => {
         RealWorld.makeDeleteRequest(`/articles/${slug}`, true).then(() => getArticles());
     }, [slug, getArticles]);
 
+    const CreateTags = (tag: string) => {
+        return tag
+            .split(' ')
+            .map((el) => UpperCase(el))
+            .join('');
+    };
+
     return (
         <ArticleContainer>
             <ArticleHeaderContainer>
@@ -40,7 +47,7 @@ export const ArticleItem = ({ article }: Props) => {
             <DescriptionContainer>{`(${UpperCase(description)})`}</DescriptionContainer>
             <BodyContainer>{UpperCase(body)}</BodyContainer>
 
-            <Tags>{tagList.map((el) => `#${el} `)}</Tags>
+            <Tags>{tagList.map((el) => `#${CreateTags(el)} `)}</Tags>
             <Line />
             <FooterContainer>
                 <Author>Имя автора: {author.username}</Author>
